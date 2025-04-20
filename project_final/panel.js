@@ -38,7 +38,7 @@ await signInAnonymously(auth);
 
 // OBS link without .html
 function overlayURL() {
-  return location.origin + '/overlay';
+  return new URL('overlay/', location.href).href;
 }
 const linkSpan = document.getElementById('obs-link');
 linkSpan.textContent = overlayURL();
