@@ -15,7 +15,6 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const targetRef = ref(db,'targetEpoch');
 
-// password gate
 const targetHash="acd44e3c041b6cfe4388c6038ffdf30edb3cedef6bb10cf388578fd21d15461e";
 async function sha256(t) { const b=new TextEncoder().encode(t); const h=await crypto.subtle.digest('SHA-256',b); return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,'0')).join(''); }
 if(!sessionStorage.getItem('timerAuth')) {
@@ -28,15 +27,14 @@ if(!sessionStorage.getItem('timerAuth')) {
   sessionStorage.setItem('timerAuth','1');
 }
 
-// OBS link
 function overlayURL() {
-  return location.origin + location.pathname.replace(/\/index\.html$/, '/overlay');
+  const basePath = location.pathname.replace(/\/(?:index(?:\.html)?)?\/?$/, '');
+  return `${location.origin}${basePath}/overlay/`;
 }
 const linkSpan=document.getElementById('obs-link');
 linkSpan.textContent=overlayURL();
 linkSpan.addEventListener('click',()=>navigator.clipboard.writeText(overlayURL()).then(()=>alert('URL copied')));
 
-// Prefill existing
 onValue(targetRef,(snap)=>{
   const v=Number(snap.val()||0);
   if(v) {
@@ -46,7 +44,6 @@ onValue(targetRef,(snap)=>{
   }
 });
 
-// save
 document.getElementById('apply').addEventListener('click',()=>{
   const d=document.getElementById('date').value;
   const t=document.getElementById('time').value;
