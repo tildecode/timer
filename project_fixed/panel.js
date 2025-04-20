@@ -33,7 +33,7 @@ if (!sessionStorage.getItem('timerAuth')) {
 
 // OBS link without .html
 function overlayURL() {
-  return location.origin + '/overlay';
+  return location.origin + '/overlay.html';
 }
 const linkSpan = document.getElementById('obs-link');
 linkSpan.textContent = overlayURL();
