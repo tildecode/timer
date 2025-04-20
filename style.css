@@ -13,6 +13,7 @@ html,body{margin:0;width:100%;height:100%;background:transparent;overflow:hidden
 .logo {
   animation: none !important;
   transition: none !important;
+  box-shadow: 0 2px 24px rgba(0,0,0,0.3);
 }
 @media(max-width:1280px){.countdown{font-size:48px}.subtitle,.tagline{font-size:20px}}
 body.panel{display:flex;justify-content:center;align-items:center;background:#0B0B0B;font-family:'SF Pro Display',sans-serif;}
