@@ -6,7 +6,7 @@ const firebaseConfig = {
   authDomain: "obs-timer-ae3d8.firebaseapp.com",
   databaseURL: "https://obs-timer-ae3d8-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "obs-timer-ae3d8",
-  storageBucket: "obs-timer-ae3d8.firebasestorage.app",
+  storageBucket: "obs-timer-ae3d8.appspot.com",
   messagingSenderId: "239406191344",
   appId: "1:239406191344:web:c7930accba84abf5b56835"
 };
