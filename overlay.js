@@ -2,13 +2,13 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/fireba
 import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyApGrKt03vicerYjGkCgr7qE_VDOzmZwnM",
-  authDomain: "timer-obs-cd14d.firebaseapp.com",
-  databaseURL: "https://timer-obs-cd14d-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "timer-obs-cd14d",
-  storageBucket: "timer-obs-cd14d.firebasestorage.app",
-  messagingSenderId: "271470559324",
-  appId: "1:271470559324:web:83d81275e2da3df9e76699"
+  apiKey: "AIzaSyAaw6V6stznHd2DOnjQUg1ZJ8Ep0hf0Q2s",
+  authDomain: "obs-timer-ae3d8.firebaseapp.com",
+  databaseURL: "https://obs-timer-ae3d8-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "obs-timer-ae3d8",
+  storageBucket: "obs-timer-ae3d8.firebasestorage.app",
+  messagingSenderId: "239406191344",
+  appId: "1:239406191344:web:c7930accba84abf5b56835"
 };
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
