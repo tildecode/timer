@@ -12,14 +12,14 @@ const firebaseConfig = {
 };
 const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
-const targetRef = ref(db,'targetEpoch');
+const targetRef = ref(db, 'targetEpoch');
 
-// Auth gate: single password for edits
+// single‐password gate
 const targetHash = "acd44e3c041b6cfe4388c6038ffdf30edb3cedef6bb10cf388578fd21d15461e";
 async function sha256(t) {
   const b = new TextEncoder().encode(t);
   const h = await crypto.subtle.digest('SHA-256', b);
-  return Array.from(new Uint8Array(h)).map(b => b.toString(16).padStart(2,'0')).join('');
+  return Array.from(new Uint8Array(h)).map(x => x.toString(16).padStart(2, '0')).join('');
 }
 if (!sessionStorage.getItem('timerAuth')) {
   const pw = prompt('Enter password to edit the timer:');
@@ -28,34 +28,36 @@ if (!sessionStorage.getItem('timerAuth')) {
     document.body.innerHTML = '<h2 style="color:white;font-family:sans-serif;text-align:center;margin-top:40vh;">Access denied</h2>';
     throw new Error('Unauthorized');
   }
-  sessionStorage.setItem('timerAuth','1');
+  sessionStorage.setItem('timerAuth', '1');
 }
 
-// OBS link without .html
+// clean OBS link
 function overlayURL() {
-  return location.origin + '/overlay.html';
+  return location.origin + '/overlay';
 }
 const linkSpan = document.getElementById('obs-link');
 linkSpan.textContent = overlayURL();
-linkSpan.addEventListener('click', () => navigator.clipboard.writeText(overlayURL()).then(() => alert('URL copied')));
+linkSpan.addEventListener('click', () => {
+  navigator.clipboard.writeText(overlayURL()).then(() => alert('URL copied'));
+});
 
-// Prefill existing target time
-onValue(targetRef, (snap) => {
+// prefill existing target
+onValue(targetRef, snap => {
   const v = Number(snap.val() || 0);
   if (v) {
     const dt = new Date(v);
-    document.getElementById('date').value = dt.toISOString().slice(0,10);
-    document.getElementById('time').value = dt.toISOString().slice(11,16);
+    document.getElementById('date').value = dt.toISOString().slice(0, 10);
+    document.getElementById('time').value = dt.toISOString().slice(11, 16);
   }
 });
 
-// Save new target time
+// save new target
 document.getElementById('apply').addEventListener('click', () => {
   const d = document.getElementById('date').value;
   const t = document.getElementById('time').value;
   if (!d || !t) { alert('Enter date and time'); return; }
-  const [y,m,day] = d.split('-').map(Number);
-  const [hh,mm] = t.split(':').map(Number);
-  const epoch = Date.UTC(y,m-1,day,hh,mm,0);
+  const [y, m, day] = d.split('-').map(Number);
+  const [hh, mm] = t.split(':').map(Number);
+  const epoch = Date.UTC(y, m - 1, day, hh, mm, 0);
   set(targetRef, epoch).then(() => alert('Start time saved!'));
 });
