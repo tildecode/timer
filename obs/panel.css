@@ -1,0 +1,9 @@
+@font-face{font-family:'SF Pro Display';src:url('./assets/fonts/SF-Pro-Display-Regular.otf') format('opentype');font-weight:400;}
+@font-face{font-family:'SF Pro Display';src:url('./assets/fonts/SF-Pro-Display-Semibold.otf') format('opentype');font-weight:600;}
+html,body{margin:0;height:100%;display:flex;justify-content:center;align-items:center;background:#0B0B0B;color:#fff;font-family:'SF Pro Display',sans-serif;}
+.card{width:308px;display:flex;flex-direction:column;gap:12px;}
+h1{font-size:32px;font-weight:600;text-align:center;margin:0 0 24px;}
+.input{width:100%;box-sizing:border-box;background:#181818;border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:10px 15px;font-size:14px;color:#fff;}
+button{background:#fff;color:#000;font-weight:600;border:none;border-radius:8px;padding:10px 15px;font-size:14px;cursor:pointer;}
+.link-box{background:#181818;border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:10px 15px;font-size:14px;user-select:all;cursor:pointer;}
+small{font-size:14px;color:#888;}
