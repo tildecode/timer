@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head>
+<meta charset="utf-8"><title>OBS Countdown Overlay</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head><body>
+<div class="timer active" id="timer1">
+  <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;width:613px;">
+     <div style="display:flex;flex-direction:column;gap:5px;">
+        <div class="countdown">T-00:00:00</div>
+        <div class="subtitle">Starship Flight Test 9</div>
+     </div>
+     <div class="tagline">Stay tuned for the Starship Nineth Flight Test launch and subscribe for updates</div>
+  </div>
+  <img src="assets/logo.svg" class="logo" alt="logo">
+</div>
+<div class="timer" id="timer2">
+  <div style="display:flex;flex-direction:column;justify-content:space-between;height:100%;width:613px;">
+     <div class="tagline">Stay tuned for the Starship Nineth Flight Test launch and subscribe for updates</div>
+     <div style="display:flex;flex-direction:column;gap:5px;">
+        <div class="countdown">T-00:00:00</div>
+        <div class="subtitle">Starship Flight Test 9</div>
+     </div>
+  </div>
+  <img src="assets/logo.svg" class="logo" alt="logo">
+</div>
+<script type="module" src="overlay.js"></script>
+</body></html>
