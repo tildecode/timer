@@ -30,7 +30,7 @@ if(!sessionStorage.getItem('timerAuth')) {
 
 // OBS link
 function overlayURL() {
-  return location.origin + location.pathname.replace(/\/index\.html$/, '/overlay.html');
+  return location.origin + location.pathname.replace(/\/index\.html$/, '/overlay');
 }
 const linkSpan=document.getElementById('obs-link');
 linkSpan.textContent=overlayURL();
