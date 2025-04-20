@@ -29,7 +29,7 @@ if(!sessionStorage.getItem('timerAuth')) {
 
 function overlayURL() {
   const basePath = location.pathname.replace(/\/(?:index(?:\.html)?)?\/?$/, '');
-  return `${location.origin}${basePath}/overlay/`;
+  return `${location.origin}${basePath}/overlay`;
 }
 const linkSpan=document.getElementById('obs-link');
 linkSpan.textContent=overlayURL();
