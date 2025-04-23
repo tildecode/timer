@@ -27,11 +27,21 @@ async function sha256(text) {
 
 async function ensureLogin() {
   if (auth.currentUser) return;
-  const pwd = prompt("Enter timer password:");
+  let pwd = localStorage.getItem('timerPassword');
+  if (pwd && await sha256(pwd) === TARGET_HASH) {
+    try {
+      await signInWithEmailAndPassword(auth, ADMIN_EMAIL, pwd);
+      return;
+    } catch {
+      localStorage.removeItem('timerPassword');
+    }
+  }
+  pwd = prompt("Enter timer password:");
   if (!(pwd && await sha256(pwd) === TARGET_HASH)) {
     alert("Wrong password");
     throw new Error("Unauthorized");
   }
+  localStorage.setItem('timerPassword', pwd);
   await signInWithEmailAndPassword(auth, ADMIN_EMAIL, pwd)
         .catch(err => { alert("Authentication failed"); throw err; });
 }
