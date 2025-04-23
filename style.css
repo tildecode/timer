@@ -39,5 +39,3 @@ input[type="date"],
 input[type="time"] {-webkit-appearance: none;-moz-appearance: none;appearance: none;display: block;width: 100%;}
 input[type="date"]::-webkit-date-and-time-value,
 input[type="time"]::-webkit-date-and-time-value {text-align: left;}
-body.panel .card {visibility: hidden;opacity: 0;filter: blur(16px);transition: opacity 0.5s ease, filter 0.5s ease;}
-body.panel.loaded .card {visibility: visible;opacity: 1;filter: blur(0);}
