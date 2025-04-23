@@ -41,8 +41,15 @@ function overlayURL() {
   const basePath = location.pathname.replace(/\/(?:index(?:\.html)?)?\/?$/, '');
   return `${location.origin}${basePath}/overlay`;
 }
-const linkSpan=document.getElementById('obs-link');
-linkSpan.textContent = overlayURL();
+
+const url = overlayURL();
+document.getElementById('obs-link').textContent = url;
+
+document.getElementById('copy-btn')
+  .addEventListener('click', () =>
+    navigator.clipboard.writeText(url)
+      .then(() => alert('URL copied')));
+
 document.getElementById('copy-btn').addEventListener('click', () =>
   navigator.clipboard.writeText(overlayURL()).then(() => alert('URL copied')));
 
