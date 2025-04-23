@@ -33,3 +33,5 @@ small{color:#888;font-size:14px}
 .loader::before{content:"";width:40px;height:40px;border:4px solid #444;border-top-color:#fff;border-radius:50%;animation:spin 1s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
 .loader.hidden{opacity:0;visibility:hidden;}
+#apply {transition: filter 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;}
+#apply:hover {filter: brightness(0.9);transform: translateY(-1px);}
