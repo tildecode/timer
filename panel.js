@@ -71,7 +71,7 @@ onValue(targetRef, snap => {
     document.getElementById("time").value = dt.toISOString().slice(11, 16);
   }
   loader.classList.add('hidden');
-  document.querySelector('.card').style.visibility = 'visible';
+  document.body.classList.add('loaded');
 });
 
 document.getElementById("apply").addEventListener("click", () => {
