@@ -15,17 +15,31 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const targetRef = ref(db,'targetEpoch');
 
-const targetHash="acd44e3c041b6cfe4388c6038ffdf30edb3cedef6bb10cf388578fd21d15461e";
-async function sha256(t) { const b=new TextEncoder().encode(t); const h=await crypto.subtle.digest('SHA-256',b); return Array.from(new Uint8Array(h)).map(b=>b.toString(16).padStart(2,'0')).join(''); }
-if(!sessionStorage.getItem('timerAuth')) {
-  const pw=prompt('Enter password to edit the timer:');
-  const h=await sha256(pw);
-  if(h!==targetHash) {
-    document.body.innerHTML='<h2 style="color:white;font-family:sans-serif;text-align:center;margin-top:40vh;">Access denied</h2>';
-    throw new Error('Unauthorized');
-  }
-  sessionStorage.setItem('timerAuth','1');
+
+const ADMIN_EMAIL = "panel@timer.local";
+const TARGET_HASH = "e8b3f29b249d0d5ae18b0cba085da5b9c7128a5f0eafbb0aa21812b7e1833be6"; 
+
+const app  = initializeApp(firebaseConfig);
+const db   = getDatabase(app);
+const auth = getAuth(app);
+const targetRef = ref(db, "targetEpoch");
+
+async function sha256(text) {
+  const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, "0")).join("");
 }
+
+async function ensureLogin() {
+  if (auth.currentUser) return;                       // уже вошли ранее
+  const pwd = prompt("Enter timer password:");
+  if (!(pwd && await sha256(pwd) === TARGET_HASH)) {  // локальная проверка
+    alert("Wrong password");
+    throw new Error("Unauthorized");
+  }
+  await signInWithEmailAndPassword(auth, ADMIN_EMAIL, pwd)
+    .catch(err => { alert("Authentication failed"); throw err; });
+}
+await ensureLogin();
 
 function overlayURL() {
   const basePath = location.pathname.replace(/\/(?:index(?:\.html)?)?\/?$/, '');
