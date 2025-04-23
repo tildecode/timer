@@ -2,7 +2,6 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.11.0/fireba
 import { getDatabase, ref, set, onValue } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-database.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
 
-/* ---------- Firebase config ---------- */
 const firebaseConfig = {
   apiKey: "AIzaSyAaw6V6stznHd2DOnjQUg1ZJ8Ep0hf0Q2s",
   authDomain: "obs-timer-ae3d8.firebaseapp.com",
@@ -19,7 +18,7 @@ const auth = getAuth(app);
 const targetRef = ref(db, "targetEpoch");
 
 const ADMIN_EMAIL = "panel@timer.local";
-const TARGET_HASH = "e8b3f29b249d0d5ae18b0cba085da5b9c7128a5f0eafbb0aa21812b7e1833be6"; 
+const TARGET_HASH = "acd44e3c041b6cfe4388c6038ffdf30edb3cedef6bb10cf388578fd21d15461e"; 
 
 async function sha256(text) {
   const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
@@ -34,10 +33,9 @@ async function ensureLogin() {
     throw new Error("Unauthorized");
   }
   await signInWithEmailAndPassword(auth, ADMIN_EMAIL, pwd)
-    .catch(err => { alert("Authentication failed"); throw err; });
+        .catch(err => { alert("Authentication failed"); throw err; });
 }
-
-await ensureLogin();
+await ensureLogin();  
 
 function overlayURL() {
   const basePath = location.pathname.replace(/\/(?:index(?:\.html)?)?\/?$/, '');
