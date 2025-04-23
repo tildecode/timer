@@ -37,6 +37,9 @@ async function ensureLogin() {
 }
 await ensureLogin();  
 
+document.querySelector('.card').style.visibility = 'hidden';
+const loader = document.getElementById('loader');
+
 function overlayURL() {
   const basePath = location.pathname.replace(/\/(?:index(?:\.html)?)?\/?$/, '');
   return `${location.origin}${basePath}/overlay`;
@@ -60,6 +63,8 @@ onValue(targetRef, snap => {
     document.getElementById("date").value = dt.toISOString().slice(0, 10);
     document.getElementById("time").value = dt.toISOString().slice(11, 16);
   }
+  loader.classList.add('hidden');
+  document.querySelector('.card').style.visibility = 'visible';
 });
 
 document.getElementById("apply").addEventListener("click", () => {
