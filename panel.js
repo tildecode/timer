@@ -53,9 +53,6 @@ document.getElementById('copy-btn')
     navigator.clipboard.writeText(url)
       .then(() => alert('URL copied')));
 
-document.getElementById('copy-btn').addEventListener('click', () =>
-  navigator.clipboard.writeText(overlayURL()).then(() => alert('URL copied')));
-
 onValue(targetRef, snap => {
   const v = Number(snap.val() || 0);
   if (v) {
