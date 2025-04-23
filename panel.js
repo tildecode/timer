@@ -42,8 +42,9 @@ function overlayURL() {
   return `${location.origin}${basePath}/overlay`;
 }
 const linkSpan=document.getElementById('obs-link');
-linkSpan.textContent=overlayURL();
-linkSpan.addEventListener('click',()=>navigator.clipboard.writeText(overlayURL()).then(()=>alert('URL copied')));
+linkSpan.textContent = overlayURL();
+document.getElementById('copy-btn').addEventListener('click', () =>
+  navigator.clipboard.writeText(overlayURL()).then(() => alert('URL copied')));
 
 onValue(targetRef, snap => {
   const v = Number(snap.val() || 0);
