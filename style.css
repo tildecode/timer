@@ -23,8 +23,8 @@ button{background:#fff;color:#000;font-weight:600;border:none;border-radius:8px;
 .link-box{background:#181818;border:1px solid rgba(255,255,255,.05);border-radius:8px;padding:10px 15px;font-size:14px;user-select:all;margin-top: 8px;}
 small{color:#888;font-size:14px}
 .obs-link-row{display:flex;flex-direction:column;gap:8px;margin-top: 8px;}
-.copy-btn{display:flex;align-items:center;gap:10px;width:100%;height:40px;padding:10px 15px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;cursor:pointer;color:#fff;font-family:'SF Pro Display',sans-serif;}
-.copy-btn:hover{background:#222;}
+.copy-btn{display:flex;align-items:center;gap:10px;width:100%;height:40px;padding:10px 15px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:8px;cursor:pointer;color:#fff;font-family:'SF Pro Display',sans-serif;transition: background-color 0.2s, transform 0.2s;}
+.copy-btn:hover{background:#222;box-shadow: 0px -6px 12px 0px rgba(255, 255, 255, 0.10) inset, 0px 4px 4px 0px rgba(0, 0, 0, 0.25); transition: background-color 0.2s, transform 0.2s;}
 .copy-btn svg{pointer-events:none;transition:opacity .2s;}
 .copy-btn:hover svg{stroke-opacity:1;}
 .link-text{word-break:break-all;}
