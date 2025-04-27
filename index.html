@@ -7,7 +7,10 @@
 <div class="card">
 <h1>Timer</h1>
 <input id="date" class="input" type="date" required>
-<input id="time" class="input" type="time" step="60" lang="en-GB" required>
+<div class="time-container">
+  <input id="time" class="input" type="time" step="60" lang="en-GB" required>
+  <span class="suffix">UTC</span>
+</div>
 <button id="apply">Apply</button>
 <div class="obs-link-row">
     <small>Link for OBS:</small>
