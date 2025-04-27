@@ -17,6 +17,18 @@ const db   = getDatabase(app);
 const auth = getAuth(app);
 const targetRef = ref(db, "targetEpoch");
 
+const loader = document.getElementById('loader');
+const noteEl = document.createElement('div');
+noteEl.id = 'loaderNote';
+noteEl.className = 'loader-note';
+loader.appendChild(noteEl);
+
+function setLoaderNote(text) {
+  noteEl.textContent = text;
+  noteEl.classList.add('animate');
+  setTimeout(() => noteEl.classList.remove('animate'), 400);
+}
+
 const ADMIN_EMAIL = "panel@timer.local";
 const TARGET_HASH = "acd44e3c041b6cfe4388c6038ffdf30edb3cedef6bb10cf388578fd21d15461e"; 
 
@@ -38,17 +50,24 @@ async function ensureLogin() {
   }
   pwd = prompt("Enter timer password:");
   if (!(pwd && await sha256(pwd) === TARGET_HASH)) {
-    alert("Wrong password");
+    setLoaderNote("Wrong password");
     throw new Error("Unauthorized");
   }
   localStorage.setItem('timerPassword', pwd);
   await signInWithEmailAndPassword(auth, ADMIN_EMAIL, pwd)
-        .catch(err => { alert("Authentication failed"); throw err; });
+        .catch(err => { setLoaderNote("Authentication failed"); throw err; });
 }
-await ensureLogin();  
+
+setLoaderNote("Authenticating…");
+try {
+  await ensureLogin();
+} catch (err) {
+  throw err;
+}
+
+setLoaderNote("Connecting to server…");
 
 document.querySelector('.card').style.visibility = 'hidden';
-const loader = document.getElementById('loader');
 
 function overlayURL() {
   const basePath = location.pathname.replace(/\/(?:index(?:\.html)?)?\/?$/, '');
@@ -64,12 +83,14 @@ document.getElementById('copy-btn')
       .then(() => alert('URL copied')));
 
 onValue(targetRef, snap => {
+  setLoaderNote("Fetching timer…");
   const v = Number(snap.val() || 0);
   if (v) {
     const dt = new Date(v);
     document.getElementById("date").value = dt.toISOString().slice(0, 10);
     document.getElementById("time").value = dt.toISOString().slice(11, 16);
   }
+  setLoaderNote("Ready");
   loader.classList.add('hidden');
   document.querySelector('.card').style.visibility = 'visible';
 });
