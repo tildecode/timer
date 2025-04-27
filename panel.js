@@ -90,7 +90,7 @@ onValue(targetRef, snap => {
     document.getElementById("date").value = dt.toISOString().slice(0, 10);
     document.getElementById("time").value = dt.toISOString().slice(11, 16);
   }
-  setLoaderNote("Ready");
+  setLoaderNote("Ready))");
   loader.classList.add('hidden');
   document.querySelector('.card').style.visibility = 'visible';
 });
