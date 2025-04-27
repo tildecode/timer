@@ -39,7 +39,7 @@ input[type="date"],
 input[type="time"] {-webkit-appearance: none;-moz-appearance: none;appearance: none;display: block;width: 100%;}
 input[type="date"]::-webkit-date-and-time-value,
 input[type="time"]::-webkit-date-and-time-value {text-align: left;}
-.time-container { display: flex; align-items: center; background: #181818; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 0 10px; height: 40px; width: 100%; box-sizing: border-box; }
+.time-container { display: flex; align-items: center; background: #181818; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 10px 15px; height: 40px; width: 100%; box-sizing: border-box; }
 .time-container .input { flex: 1; background: transparent; border: none; color: #ffffff; font-size: 14px; height: 100%; padding: 0; font-family: 'SF Pro Display', sans-serif; }
 .time-container .input:focus { outline: none; }
 .time-container .suffix { color: #888888; font-size: 14px; margin-left: 8px; white-space: nowrap; }
